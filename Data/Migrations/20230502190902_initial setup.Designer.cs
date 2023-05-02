@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using secure_programming.Data;
 
@@ -11,9 +12,10 @@ using secure_programming.Data;
 namespace secure_programming.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230502190902_initial setup")]
+    partial class initialsetup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,15 +230,6 @@ namespace secure_programming.Data.Migrations
                 {
                     b.Property<string>("AirplaneID")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AirportDestination")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AirportOrigin")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("Assigned")
-                        .HasColumnType("bit");
 
                     b.Property<string>("FlightID")
                         .HasColumnType("nvarchar(max)");
