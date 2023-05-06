@@ -27,6 +27,20 @@ namespace secure_programming.Controllers
                           Problem("Entity set 'ApplicationDbContext.Airplane'  is null.");
         }
 
+        // GET: Airplanes/SearchPlanes
+        public async Task<IActionResult> SearchPlanes()
+        {
+            return View();
+        }
+
+        // POST: Airplanes/search
+        public async Task<IActionResult> SearchResults(String SearchPlane)
+        {
+            return _context.Airplane != null ?
+                          View("Index", await _context.Airplane.Where( a => a.AirplaneID.Contains(SearchPlane)).ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Airplane'  is null.");
+        }
+
         // GET: Airplanes/Details/5
         public async Task<IActionResult> Details(string id)
         {
