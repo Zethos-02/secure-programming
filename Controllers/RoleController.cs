@@ -15,7 +15,7 @@ namespace Identity.Controllers
             roleManager = roleMgr;
             userManager = userMrg;
         }
-
+        [Authorize(Roles = "StaffMembe")]
         public ViewResult Index() => View(roleManager.Roles);
 
         private void Errors(IdentityResult result)
@@ -24,7 +24,7 @@ namespace Identity.Controllers
                 ModelState.AddModelError("", error.Description);
         }
         // other methods
-        [Authorize(Roles = "StaffMember")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(string id)
         {
             IdentityRole role = await roleManager.FindByIdAsync(id);
