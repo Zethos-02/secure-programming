@@ -33,6 +33,21 @@
                 <span asp-validation-for="FlightID" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="AirportDestination" class="control-label"></label>
+                <input asp-for="AirportDestination" class="form-control" />
+                <span asp-validation-for="AirportDestination" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirportOrigin" class="control-label"></label>
+                <input asp-for="AirportOrigin" class="form-control" />
+                <span asp-validation-for="AirportOrigin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assigned" class="control-label"></label>
+                <input asp-for="Assigned" class="form-control" />
+                <span asp-validation-for="Assigned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
