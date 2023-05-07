@@ -15,7 +15,10 @@ namespace secure_programming.Data.Migrations
                     AirplaneID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MaxSeat = table.Column<int>(type: "int", nullable: false),
-                    FlightID = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    FlightID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AirportDestination = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AirportOrigin = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Assigned = table.Column<string>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
