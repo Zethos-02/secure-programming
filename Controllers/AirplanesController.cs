@@ -21,28 +21,32 @@ namespace secure_programming.Controllers
         }
 
         // GET: Airplanes
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-              return _context.Airplane != null ? 
-                          View(await _context.Airplane.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Airplane'  is null.");
+            return _context.Airplane != null ?
+                        View(await _context.Airplane.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Airplane'  is null.");
         }
 
         // GET: Airplanes/SearchPlanes
+        [Authorize]
         public async Task<IActionResult> SearchPlanes()
         {
             return View();
         }
 
         // POST: Airplanes/search
+        [Authorize]
         public async Task<IActionResult> SearchResults(String SearchPlane)
         {
             return _context.Airplane != null ?
-                          View("Index", await _context.Airplane.Where( a => a.AirplaneID.Contains(SearchPlane)).ToListAsync()) :
+                          View("Index", await _context.Airplane.Where(a => a.AirplaneID.Contains(SearchPlane)).ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Airplane'  is null.");
         }
 
         // GET: Airplanes/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.Airplane == null)
@@ -61,7 +65,7 @@ namespace secure_programming.Controllers
         }
 
         // GET: Airplanes/Create
-        [Authorize]
+        [Authorize(Roles = "StaffMember")]
         public IActionResult Create()
         {
             return View();
@@ -70,7 +74,7 @@ namespace secure_programming.Controllers
         // POST: Airplanes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = "StaffMember")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AirplaneID,Name,MaxSeat,FlightID,AirportDestination,AirportOrigin,Assigned")] Airplane airplane)
@@ -85,7 +89,7 @@ namespace secure_programming.Controllers
         }
 
         // GET: Airplanes/Edit/5
-        [Authorize]
+        [Authorize(Roles = "StaffMember")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.Airplane == null)
@@ -104,7 +108,7 @@ namespace secure_programming.Controllers
         // POST: Airplanes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = "StaffMember")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("AirplaneID,Name,MaxSeat,FlightID")] Airplane airplane)
@@ -138,7 +142,7 @@ namespace secure_programming.Controllers
         }
 
         // GET: Airplanes/Delete/5
-        [Authorize]
+        [Authorize(Roles = "StaffMember")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.Airplane == null)
@@ -157,7 +161,7 @@ namespace secure_programming.Controllers
         }
 
         // POST: Airplanes/Delete/5
-        [Authorize]
+        [Authorize(Roles = "StaffMember")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

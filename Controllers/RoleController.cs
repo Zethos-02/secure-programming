@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using secure_programming.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Identity.Controllers
 {
@@ -15,8 +16,15 @@ namespace Identity.Controllers
             userManager = userMrg;
         }
 
-        // other methods
+        public ViewResult Index() => View(roleManager.Roles);
 
+        private void Errors(IdentityResult result)
+        {
+            foreach (IdentityError error in result.Errors)
+                ModelState.AddModelError("", error.Description);
+        }
+        // other methods
+        [Authorize(Roles = "StaffMember")]
         public async Task<IActionResult> Update(string id)
         {
             IdentityRole role = await roleManager.FindByIdAsync(id);
@@ -34,7 +42,7 @@ namespace Identity.Controllers
                 NonMembers = nonMembers
             });
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Update(RoleModification model)
         {
