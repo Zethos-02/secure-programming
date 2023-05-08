@@ -15,6 +15,7 @@ namespace secure_programming.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        // Links to database
         public AirplanesController(ApplicationDbContext context)
         {
             _context = context;

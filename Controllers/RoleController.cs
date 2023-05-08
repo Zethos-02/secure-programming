@@ -8,6 +8,7 @@ namespace Identity.Controllers
 {
     public class RoleController : Controller
     {
+        //Links to role page view and sets up role and user managers
         private RoleManager<IdentityRole> roleManager;
         private UserManager<IdentityUser> userManager;
         public RoleController(RoleManager<IdentityRole> roleMgr, UserManager<IdentityUser> userMrg)
@@ -23,7 +24,7 @@ namespace Identity.Controllers
             foreach (IdentityError error in result.Errors)
                 ModelState.AddModelError("", error.Description);
         }
-        // other methods
+        // Lists the relevant role information and sends to view
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(string id)
         {
@@ -42,6 +43,7 @@ namespace Identity.Controllers
                 NonMembers = nonMembers
             });
         }
+        //Allows for updating to roles for users
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Update(RoleModification model)
@@ -70,7 +72,7 @@ namespace Identity.Controllers
                     }
                 }
             }
-
+            //redirects to the relevant view
             if (ModelState.IsValid)
                 return RedirectToAction(nameof(Index));
             else

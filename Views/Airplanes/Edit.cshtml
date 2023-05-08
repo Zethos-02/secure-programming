@@ -13,6 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="AirplaneID" />
+            @*creates the edit form*@
             <div class="form-group">
                 <label asp-for="AirplaneID" class="control-label"></label>
                 <input asp-for="AirplaneID" class="form-control" />

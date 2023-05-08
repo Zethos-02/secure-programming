@@ -4,6 +4,7 @@ namespace secure_programming.Models
 {
     public class RoleModification
     {
+        //creates class for modification to the roles
         [Required]
         public string RoleName { get; set; }
 
