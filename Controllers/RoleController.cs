@@ -15,7 +15,7 @@ namespace Identity.Controllers
             roleManager = roleMgr;
             userManager = userMrg;
         }
-        [Authorize(Roles = "StaffMembe")]
+        [Authorize(Roles = "Admin")]
         public ViewResult Index() => View(roleManager.Roles);
 
         private void Errors(IdentityResult result)
