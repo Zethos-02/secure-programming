@@ -15,7 +15,7 @@ namespace Identity.CustomTagHelpers
             userManager = usermgr;
             roleManager = rolemgr;
         }
-
+        //extracts the user information
         [HtmlAttributeName("i-role")]
         public string Role { get; set; }
 

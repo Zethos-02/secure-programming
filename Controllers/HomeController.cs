@@ -7,6 +7,7 @@ namespace secure_programming.Controllers
 {
     public class HomeController : Controller
     {
+        //Links index and privacy page views when the links are clicked
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
